@@ -235,6 +235,14 @@ export default {
       this.getRoot().$emit('nodeleave', node, event);
     },
 
+    emitNodeOver(node, event) {
+      this.getRoot().$emit('nodeover', node, event);
+    },
+    
+    emitNodeOut(node, event) {
+      this.getRoot().$emit('nodeout', node, event);
+    },
+
     onExternalDragoverHandler(node, event) {
       event.preventDefault();
       const root = this.getRoot();

@@ -225,6 +225,12 @@
       emitNodeLeave: function emitNodeLeave(node, event) {
         this.getRoot().$emit('nodeleave', node, event);
       },
+      emitNodeOver: function emitNodeOver(node, event) {
+        this.getRoot().$emit('nodeover', node, event);
+      },
+      emitNodeOut: function emitNodeOut(node, event) {
+        this.getRoot().$emit('nodeout', node, event);
+      },
       onExternalDragoverHandler: function onExternalDragoverHandler(node, event) {
         event.preventDefault();
         var root = this.getRoot();
@@ -869,6 +875,12 @@
                         },
                         mouseleave: function($event) {
                           _vm.emitNodeLeave(node, $event);
+                        },
+                        mouseover: function($event) {
+                          _vm.emitNodeOver(node, $event);
+                        },
+                        mouseout: function($event) {
+                          _vm.emitNodeOut(node, $event);
                         },
                         mousedown: function($event) {
                           _vm.onNodeMousedownHandler($event, node);
