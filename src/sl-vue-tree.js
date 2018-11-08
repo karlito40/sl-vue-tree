@@ -226,6 +226,14 @@ export default {
     emitNodeContextmenu(node, event) {
       this.getRoot().$emit('nodecontextmenu', node, event);
     },
+    
+    emitNodeEnter(node, event) {
+      this.getRoot().$emit('nodeenter', node, event);
+    },
+    
+    emitNodeLeave(node, event) {
+      this.getRoot().$emit('nodeleave', node, event);
+    },
 
     onExternalDragoverHandler(node, event) {
       event.preventDefault();
@@ -539,7 +547,7 @@ export default {
       if (!this.cursorPosition) {
         this.stopDrag();
         return;
-      };
+      }
 
 
       const draggingNodes = this.getDraggable();
@@ -644,6 +652,17 @@ export default {
       return this.getNodeSiblings(nodes[path[0]].children, path.slice(1));
     },
 
+    getNodeModel(path) {
+      let nodeModels = this.currentValue;
+      let nodeModel;
+
+      for(let nodeIndex of path) {
+        nodeModel = nodeModels[nodeIndex];
+        nodeModels = nodeModel.children || [];
+      }
+      
+      return nodeModel;
+    },
 
     updateNode(path, patch) {
       if (!this.isRoot) {
